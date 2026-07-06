@@ -6,31 +6,47 @@
     <title>Isah's Store | FTF Marretas</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root { --rosa-pastel: #ffe5ec; --rosa-medio: #ffb3c6; --rosa-escuro: #ff85a1; --dourado: #f4d068; --branco-vidro: rgba(255, 255, 255, 0.5); --borda-vidro: rgba(255, 255, 255, 0.6); --texto-escuro: #4a3b40; }
+        :root {
+            --rosa-pastel: #ffe5ec; --rosa-medio: #ffb3c6; --rosa-escuro: #ff85a1;
+            --dourado: #f4d068; --branco-vidro: rgba(255, 255, 255, 0.5);
+            --borda-vidro: rgba(255, 255, 255, 0.6); --texto-escuro: #4a3b40;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, #ffe5ec, #ffcad4, #b5e2fa); min-height: 100vh; color: var(--texto-escuro); overflow-x: hidden; }
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffe5ec, #ffcad4); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease; }
-        .btn-enter { padding: 15px 45px; font-size: 1.3rem; background: var(--dourado); color: white; border: none; border-radius: 50px; cursor: pointer; }
-        #main-app { display: none; padding: 20px; }
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .product-card { padding: 20px; background: var(--branco-vidro); border-radius: 20px; text-align: center; border: 1px solid var(--borda-vidro); }
+        body { background: linear-gradient(135deg, #ffe5ec 0%, #ffcad4 50%, #b5e2fa 100%); min-height: 100vh; color: var(--texto-escuro); overflow-x: hidden; }
+        #sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+        .petal { position: absolute; background: linear-gradient(to bottom right, #ffb3c6, #ffe5ec); border-radius: 150% 0% 150% 150%/150% 0% 150% 150%; opacity: 0.8; animation: FloatDown linear infinite; }
+        @keyframes FloatDown { 100% { transform: translateY(100vh) translateX(100px) rotate(720deg); opacity: 0; } }
+        
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffe5ec, #ffcad4); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .splash-logo { font-family: 'Fredoka', sans-serif; font-size: 3.5rem; color: white; text-shadow: 3px 3px 0px var(--rosa-escuro); }
+        .btn-enter { margin-top: 20px; padding: 15px 45px; font-size: 1.3rem; background: var(--dourado); color: white; border-radius: 50px; cursor: pointer; border: none; }
+        
+        #main-app { display: none; opacity: 0; transition: opacity 0.8s ease; }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 20px auto; padding: 20px; }
+        .product-card { padding: 20px; background: var(--branco-vidro); border: 1px solid var(--borda-vidro); border-radius: 20px; text-align: center; }
         .product-img-file { width: 120px; height: 120px; object-fit: contain; }
         .btn-buy { width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; border: none; background: var(--rosa-escuro); color: white; cursor: pointer; }
-        .btn-atendimento { width: 100%; max-width: 1200px; margin: 20px auto; padding: 20px; background: rgba(255,255,255,0.7); border: 2px dashed var(--rosa-escuro); border-radius: 20px; text-align: center; cursor: pointer; }
+        .btn-atendimento { width: 90%; max-width: 1200px; margin: 20px auto; padding: 20px; background: rgba(255,255,255,0.7); border: 2px dashed var(--rosa-escuro); border-radius: 20px; text-align: center; cursor: pointer; }
     </style>
 </head>
 <body>
 
+    <div id="sakura-container"></div>
+
     <section id="splash-screen">
-        <h1>Isah's Store</h1>
+        <h1 class="splash-logo">Isah's Store</h1>
         <button class="btn-enter" id="btn-entrar-loja">Entrar na Loja ✨</button>
     </section>
 
     <div id="main-app">
-        <h1 style="text-align: center; margin-bottom: 20px;">Loja de Marretas</h1>
+        <header style="text-align: center; padding: 20px;">
+            <a href="#" style="font-family:'Fredoka'; font-size: 2rem; color: var(--rosa-escuro); text-decoration: none;">Isah's Store</a>
+        </header>
+
         <div class="catalog-grid" id="products-grid"></div>
-        
+
         <div class="btn-atendimento" onclick="falarComAtendente()">
             <h3><i class="fa-brands fa-whatsapp"></i> Não achou a marreta que queria?</h3>
             <p>Clique aqui para falar com um atendente!</p>
@@ -39,37 +55,51 @@
 
     <script>
         const estoqueMarretas = [
-            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "210319.webp" },
-            { id: 2, nome: "Lovesick Bow", raridade: "lendario", preco: 8.00, imagem: "210320.webp" },
-            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "210321.webp" },
-            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "210322.webp" },
-            { id: 5, nome: "Pumpkin Slice", raridade: "lendario", preco: 5.00, imagem: "210340.webp" },
-            { id: 6, nome: "Spooky Brew", raridade: "lendario", preco: 5.00, imagem: "210341.webp" },
-            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "210352.webp" },
-            { id: 8, nome: "Cherry Blossom", raridade: "lendario", preco: 4.00, imagem: "210589.webp" },
-            { id: 9, nome: "Pegasus Blade", raridade: "lendario", preco: 3.00, imagem: "210590.webp" },
-            { id: 10, nome: "Batwing Basher", raridade: "lendario", preco: 3.00, imagem: "210591.webp" },
-            { id: 11, nome: "Psycho's Chainsaw", raridade: "lendario", preco: 2.75, imagem: "210592.webp" },
-            { id: 12, nome: "Sakura Parasol", raridade: "lendario", preco: 3.75, imagem: "210593.png" },
-            { id: 13, nome: "Classic", raridade: "lendario", preco: 2.50, imagem: "210594.webp" },
-            { id: 14, nome: "Merry Music Box", raridade: "lendario", preco: 5.00, imagem: "210595.webp" },
-            { id: 15, nome: "Devilborn", raridade: "lendario", preco: 2.50, imagem: "210596.webp" },
-            { id: 16, nome: "Dark Bone Crusher", raridade: "lendario", preco: 2.75, imagem: "210597.webp" },
-            { id: 17, nome: "Strawberry Jelly Basket", raridade: "lendario", preco: 3.50, imagem: "210598.png" },
-            { id: 18, nome: "Dragon Puppet", raridade: "lendario", preco: 2.50, imagem: "210599.webp" },
-            { id: 19, nome: "Soulless Theater", raridade: "lendario", preco: 1.50, imagem: "210600.webp" },
-            { id: 20, nome: "Marine Anchor", raridade: "lendario", preco: 2.50, imagem: "210601.webp" },
-            { id: 21, nome: "Easter Basket", raridade: "lendario", preco: 1.50, imagem: "210604.webp" },
-            { id: 22, nome: "Strawberry Basket", raridade: "lendario", preco: 2.25, imagem: "210605.webp" },
-            { id: 23, nome: "Lemon Basket", raridade: "lendario", preco: 2.25, imagem: "210606.webp" },
-            { id: 24, nome: "Blueberry Basket", raridade: "lendario", preco: 2.25, imagem: "210607.webp" },
-            { id: 25, nome: "Piñata", raridade: "lendario", preco: 1.50, imagem: "210608.webp" }
+            { id: 1, nome: "Party Balloons", preco: 10.00, imagem: "210319.webp" },
+            { id: 2, nome: "Lovesick Bow", preco: 8.00, imagem: "210320.webp" },
+            { id: 3, nome: "Gothic Bouquet", preco: 6.00, imagem: "210321.webp" },
+            { id: 4, nome: "Devilish Candle", preco: 6.00, imagem: "210322.webp" },
+            { id: 5, nome: "Pumpkin Slice", preco: 5.00, imagem: "210340.webp" },
+            { id: 6, nome: "Spooky Brew", preco: 5.00, imagem: "210341.webp" },
+            { id: 7, nome: "Ice Cream Mix", preco: 4.00, imagem: "210352.webp" },
+            { id: 8, nome: "Cherry Blossom", preco: 4.00, imagem: "210589.webp" },
+            { id: 9, nome: "Pegasus Blade", preco: 3.00, imagem: "210590.webp" },
+            { id: 10, nome: "Batwing Basher", preco: 3.00, imagem: "210591.webp" },
+            { id: 11, nome: "Psycho's Chainsaw", preco: 2.75, imagem: "210592.webp" },
+            { id: 12, nome: "Sakura Parasol", preco: 3.75, imagem: "210593.png" },
+            { id: 13, nome: "Classic", preco: 2.50, imagem: "210594.webp" },
+            { id: 14, nome: "Merry Music Box", preco: 5.00, imagem: "210595.webp" },
+            { id: 15, nome: "Devilborn", preco: 2.50, imagem: "210596.webp" },
+            { id: 16, nome: "Dark Bone Crusher", preco: 2.75, imagem: "210597.webp" },
+            { id: 17, nome: "Strawberry Jelly Basket", preco: 3.50, imagem: "210598.png" },
+            { id: 18, nome: "Dragon Puppet", preco: 2.50, imagem: "210599.webp" },
+            { id: 19, nome: "Soulless Theater", preco: 1.50, imagem: "210600.webp" },
+            { id: 20, nome: "Marine Anchor", preco: 2.50, imagem: "210601.webp" },
+            { id: 21, nome: "Easter Basket", preco: 1.50, imagem: "210604.webp" },
+            { id: 22, nome: "Strawberry Basket", preco: 2.25, imagem: "210605.webp" },
+            { id: 23, nome: "Lemon Basket", preco: 2.25, imagem: "210606.webp" },
+            { id: 24, nome: "Blueberry Basket", preco: 2.25, imagem: "210607.webp" },
+            { id: 25, nome: "Piñata", preco: 1.50, imagem: "210608.webp" }
         ];
 
         document.getElementById('btn-entrar-loja').addEventListener('click', () => {
             document.getElementById('splash-screen').style.display = 'none';
-            document.getElementById('main-app').style.display = 'block';
+            const main = document.getElementById('main-app');
+            main.style.display = 'block';
+            setTimeout(() => main.style.opacity = '1', 50);
         });
+
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = petal.style.height = Math.random() * 8 + 8 + 'px';
+            petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+            container.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }
+        setInterval(createSakura, 400);
 
         const grid = document.getElementById('products-grid');
         estoqueMarretas.forEach(p => {
@@ -78,14 +108,15 @@
                     <img src="${p.imagem}" class="product-img-file" alt="${p.nome}" onerror="this.style.display='none'">
                     <h3>${p.nome}</h3>
                     <p>R$ ${p.preco.toFixed(2)}</p>
-                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-buy" onclick="falarComAtendente()">Comprar</button>
                 </div>
             `;
         });
 
         function falarComAtendente() {
-            window.open("https://api.whatsapp.com/send?phone=5591984233927&text=Olá! Não encontrei a marreta que queria no site. Pode me ajudar?", '_blank');
+            window.open("https://api.whatsapp.com/send?phone=5591984233927&text=Olá! Gostaria de comprar uma marreta da Isah's Store.", '_blank');
         }
     </script>
 </body>
 </html>
+
