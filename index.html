@@ -544,31 +544,34 @@
 
     <script>
         // URLs diretas da Flee the Facility Wiki para carregar online automaticamente
-        const estoqueMarretas = [
-            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/4/4e/Party_Balloons.png" },
-            { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/a/a2/Lovesick_Bow.png" },
-            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/9/90/Gothic_Bouquet.png" },
-            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/b/b3/Devilish_Candle.png" },
-            { id: 5, nome: "Slice", raridade: "lendario", preco: 5.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/c/ca/Pumpkin_Slice.png" },
-            { id: 6, nome: "Spooky", raridade: "lendario", preco: 5.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/2/23/Spooky_Brew.png" },
-            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/5/50/Icecream_Mix.png" },
-            { id: 8, nome: "Cherry blossom", raridade: "lendario", preco: 4.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/1/1a/Cherry_Blossom.png" },
-            { id: 9, nome: "Sakura parasol", raridade: "lendario", preco: 3.75, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/d/df/Sakura_Parasol.png" },
-            { id: 10, nome: "Strawberry garden", raridade: "lendario", preco: 3.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/3/30/Strawberry_Garden.png" },
-            { id: 11, nome: "Pegasus", raridade: "lendario", preco: 3.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/2/28/Pegasus.png" },
-            { id: 12, nome: "Batwing", raridade: "lendario", preco: 3.00, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/1/12/Batwing.png" },
-            { id: 13, nome: "Psycho's Chainsaw", raridade: "lendario", preco: 2.75, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/7/77/Psycho%27s_Chainsaw.png" },
-            { id: 14, nome: "Classic", raridade: "lendario", preco: 2.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/e/e4/Classic.png" },
-            { id: 15, nome: "Devilborn", raridade: "lendario", preco: 2.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/8/87/Devilborn.png" },
-            { id: 16, nome: "Drogon puppet", raridade: "lendario", preco: 2.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/7/7b/Dragon_Puppet.png" },
-            { id: 17, nome: "Soulless theater", raridade: "lendario", preco: 1.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/4/4d/Soulless_Theater.png" },
-            { id: 18, nome: "Marine", raridade: "lendario", preco: 2.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/6/6f/Marine.png" },
-            { id: 19, nome: "Easter basket", raridade: "lendario", preco: 1.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/4/41/Easter_Basket.png" },
-            { id: 20, nome: "Cesta de morango", raridade: "lendario", preco: 2.25, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/0/05/Strawberry_Basket.png" },
-            { id: 21, nome: "Cesta de limão", raridade: "lendario", preco: 2.25, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/0/01/Lemon_Basket.png" },
-            { id: 22, nome: "Cesta de blueberry", raridade: "lendario", preco: 2.25, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/d/df/Blueberry_Basket.png" },
-            { id: 23, nome: "Pinata", raridade: "lendario", preco: 1.50, imagem: "https://static.wikia.nocookie.net/flee-the-facility-roblox/images/c/ca/Pi%C3%B1ata.png" }
+                const estoqueMarretas = [
+            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "210319.webp" },
+            { id: 2, nome: "Lovesick Bow", raridade: "lendario", preco: 8.00, imagem: "210320.webp" },
+            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "210321.webp" },
+            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "210322.webp" },
+            { id: 5, nome: "Pumpkin Slice", raridade: "lendario", preco: 5.00, imagem: "210340.webp" },
+            { id: 6, nome: "Spooky Brew", raridade: "lendario", preco: 5.00, imagem: "210341.webp" },
+            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "210352.webp" },
+            { id: 8, nome: "Cherry Blossom", raridade: "lendario", preco: 4.00, imagem: "210589.webp" },
+            { id: 9, nome: "Pegasus Blade", raridade: "lendario", preco: 3.00, imagem: "210590.webp" },
+            { id: 10, nome: "Batwing Basher", raridade: "lendario", preco: 3.00, imagem: "210591.webp" },
+            { id: 11, nome: "Psycho's Chainsaw", raridade: "lendario", preco: 2.75, imagem: "210592.webp" },
+            { id: 12, nome: "Sakura Parasol", raridade: "lendario", preco: 3.75, imagem: "210593.png" },
+            { id: 13, nome: "Classic", raridade: "lendario", preco: 2.50, imagem: "210594.webp" },
+            { id: 14, nome: "Merry Music Box", raridade: "lendario", preco: 5.00, imagem: "210595.webp" },
+            { id: 15, nome: "Devilborn", raridade: "lendario", preco: 2.50, imagem: "210596.webp" },
+            { id: 16, nome: "Dark Bone Crusher", raridade: "lendario", preco: 2.75, imagem: "210597.webp" },
+            { id: 17, nome: "Strawberry Jelly Basket", raridade: "lendario", preco: 3.50, imagem: "210598.png" },
+            { id: 18, nome: "Dragon Puppet", raridade: "lendario", preco: 2.50, imagem: "210599.webp" },
+            { id: 19, nome: "Soulless Theater", raridade: "lendario", preco: 1.50, imagem: "210600.webp" },
+            { id: 20, nome: "Marine Anchor", raridade: "lendario", preco: 2.50, imagem: "210601.webp" },
+            { id: 21, nome: "Easter Basket", raridade: "lendario", preco: 1.50, imagem: "210604.webp" },
+            { id: 22, nome: "Strawberry Basket", raridade: "lendario", preco: 2.25, imagem: "210605.webp" },
+            { id: 23, nome: "Lemon Basket", raridade: "lendario", preco: 2.25, imagem: "210606.webp" },
+            { id: 24, nome: "Blueberry Basket", raridade: "lendario", preco: 2.25, imagem: "210607.webp" },
+            { id: 25, nome: "Piñata", raridade: "lendario", preco: 1.50, imagem: "210608.webp" }
         ];
+
 
         let carrinho = [];
 
