@@ -544,13 +544,13 @@
 
     <script>
         const estoqueMarretas = [
-            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/4/44/Party_Balloons.webp/revision/latest" },
-            { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/7/77/Lovesick.webp/revision/latest" },
-            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/a/a2/Gothic_Bouquet.webp/revision/latest" },
-            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/1/14/Devilish_Candle.webp/revision/latest" },
-            { id: 5, nome: "Slice", raridade: "lendario", preco: 5.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/d/df/Slice.webp/revision/latest" },
-            { id: 6, nome: "Spooky", raridade: "lendario", preco: 5.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/5/52/Spooky.webp/revision/latest" },
-            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "https://vignette.wikia.nocookie.net/flee-the-facility-roblox/images/f/fb/Ice_Cream_Mix.webp/revision/latest" }
+            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "210319.webp" },
+            { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "210320.webp" },
+            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "210321.webp" },
+            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "210322.webp" },
+            { id: 5, nome: "Slice", raridade: "lendario", preco: 5.00, imagem: "210352.webp" },
+            { id: 6, nome: "Spooky", raridade: "lendario", preco: 5.00, imagem: "210340.webp" },
+            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "210341.webp" }
         ];
 
         let carrinho = [];
@@ -593,7 +593,7 @@
                 const card = document.createElement('div');
                 card.className = 'product-card glass-panel';
                 card.innerHTML = `
-                    <span class="rarity-tag rarity-${p.rarity}">${p.rarity}</span>
+                    <span class="rarity-tag rarity-${p.raridade}">${p.raridade}</span>
                     <div class="product-img-container">
                         <img src="${p.imagem}" class="product-img-file" alt="${p.nome}">
                     </div>
@@ -611,7 +611,7 @@
             const orderVal = document.getElementById('price-order').value;
 
             let filtrados = estoqueMarretas.filter(p => {
-                return p.nome.toLowerCase().includes(searchVal) && (rarityVal === 'todos' || p.rarity === rarityVal);
+                return p.nome.toLowerCase().includes(searchVal) && (rarityVal === 'todos' || p.raridade === rarityVal);
             });
 
             if(orderVal === 'menor') filtrados.sort((a, b) => a.preco - b.preco);
