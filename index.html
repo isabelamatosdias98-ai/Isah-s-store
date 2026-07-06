@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTF Store | Marretas Exclusivas</title>
+    <title>Isah's Store | FTF Marretas</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -456,7 +456,7 @@
 
     <section id="splash-screen">
         <div class="splash-content">
-            <h1 class="splash-logo">FTF Store</h1>
+            <h1 class="splash-logo">Isah's Store</h1>
             <p style="font-size: 1.1rem; color: #7d636b; font-weight: 600;">Marretas Exclusivas do FTF 🌸</p>
             <div class="hammer-illustration">
                 <div class="hammer-head"></div>
@@ -469,7 +469,7 @@
     <div id="main-app">
         <header class="glass-panel">
             <a href="#" class="logo">
-                <span style="font-family:'Fredoka'; font-weight:700; color: var(--rosa-escuro)">FTF</span> Store
+                <span style="font-family:'Fredoka'; font-weight:700; color: var(--rosa-escuro)">Isah's</span> Store
             </a>
             <button class="cart-icon-btn" onclick="toggleCart()">
                 <i class="fa-solid fa-basket-shopping"></i>
@@ -510,12 +510,12 @@
             <h2><i class="fa-solid fa-heart" style="color: var(--rosa-escuro)"></i> Avaliações dos Clientes</h2>
             <div class="review-card glass-panel">
                 <div style="color:var(--dourado); margin-bottom:5px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <p>"Entrega perfeita! O trade foi super rápido. Virei cliente!"</p>
+                <p>"Entrega perfeita! O trade da Lovesick foi super rápido. Virei cliente!"</p>
                 <strong style="font-size:0.8rem; display:block; margin-top:8px;">@NickPlayer_FTF</strong>
             </div>
             <div class="review-card glass-panel">
                 <div style="color:var(--dourado); margin-bottom:5px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <p>"Amei comprar aqui, o site é a coisa mais linda e confiável."</p>
+                <p>"Amei comprar aqui na Isah's Store, o site é a coisa mais linda e confiável."</p>
                 <strong style="font-size:0.8rem; display:block; margin-top:8px;">@juliah_games</strong>
             </div>
         </section>
@@ -538,40 +538,20 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 FTF Store. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Isah's Store. Inspirado no estilo FTF Store.</p>
         </footer>
     </div>
 
     <script>
-        // URLs diretas da Flee the Facility Wiki para carregar online automaticamente
-                const estoqueMarretas = [
-    { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "./210319.webp" },
-    { id: 2, nome: "Lovesick Bow", raridade: "lendario", preco: 8.00, imagem: "./210320.webp" },
-    { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "./210321.webp" },
-    { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "./210322.webp" },
-    { id: 5, nome: "Pumpkin Slice", raridade: "lendario", preco: 5.00, imagem: "./210340.webp" },
-    { id: 6, nome: "Spooky Brew", raridade: "lendario", preco: 5.00, imagem: "./210341.webp" },
-    { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "./210352.webp" },
-    { id: 8, nome: "Cherry Blossom", raridade: "lendario", preco: 4.00, imagem: "./210589.webp" },
-    { id: 9, nome: "Pegasus Blade", raridade: "lendario", preco: 3.00, imagem: "./210590.webp" },
-    { id: 10, nome: "Batwing Basher", raridade: "lendario", preco: 3.00, imagem: "./210591.webp" },
-    { id: 11, nome: "Psycho's Chainsaw", raridade: "lendario", preco: 2.75, imagem: "./210592.webp" },
-    { id: 12, nome: "Sakura Parasol", raridade: "lendario", preco: 3.75, imagem: "./210593.png" },
-    { id: 13, nome: "Classic", raridade: "lendario", preco: 2.50, imagem: "./210594.webp" },
-    { id: 14, nome: "Merry Music Box", raridade: "lendario", preco: 5.00, imagem: "./210595.webp" },
-    { id: 15, nome: "Devilborn", raridade: "lendario", preco: 2.50, imagem: "./210596.webp" },
-    { id: 16, nome: "Dark Bone Crusher", raridade: "lendario", preco: 2.75, imagem: "./210597.webp" },
-    { id: 17, nome: "Strawberry Jelly Basket", raridade: "lendario", preco: 3.50, imagem: "./210598.png" },
-    { id: 18, nome: "Dragon Puppet", raridade: "lendario", preco: 2.50, imagem: "./210599.webp" },
-    { id: 19, nome: "Soulless Theater", raridade: "lendario", preco: 1.50, imagem: "./210600.webp" },
-    { id: 20, nome: "Marine Anchor", raridade: "lendario", preco: 2.50, imagem: "./210601.webp" },
-    { id: 21, nome: "Easter Basket", raridade: "lendario", preco: 1.50, imagem: "./210604.webp" },
-    { id: 22, nome: "Strawberry Basket", raridade: "lendario", preco: 2.25, imagem: "./210605.webp" },
-    { id: 23, nome: "Lemon Basket", raridade: "lendario", preco: 2.25, imagem: "./210606.webp" },
-    { id: 24, nome: "Blueberry Basket", raridade: "lendario", preco: 2.25, imagem: "./210607.webp" },
-    { id: 25, nome: "Piñata", raridade: "lendario", preco: 1.50, imagem: "./210608.webp" }
-];
-
+        const estoqueMarretas = [
+            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "Party Balloons.webp" },
+            { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "Lovesick Bow (1).webp" },
+            { id: 3, nome: "Gothic Bouquet", raridade: "lendario", preco: 6.00, imagem: "Gothic Bouquet (1).webp" },
+            { id: 4, nome: "Devilish Candle", raridade: "lendario", preco: 6.00, imagem: "Devilish Candle.webp" },
+            { id: 5, nome: "Slice", raridade: "lendario", preco: 5.00, imagem: "Pumpkin Slice.webp" },
+            { id: 6, nome: "Spooky", raridade: "lendario", preco: 5.00, imagem: "Spooky Brew (1).webp" },
+            { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "Icecream Mix (1).webp" }
+        ];
 
         let carrinho = [];
 
@@ -615,7 +595,7 @@
                 card.innerHTML = `
                     <span class="rarity-tag rarity-${p.raridade}">${p.raridade}</span>
                     <div class="product-img-container">
-                        <img src="${p.imagem}" class="product-img-file" alt="${p.nome}" onerror="this.src='https://via.placeholder.com/130?text=FTF+Hammer'">
+                        <img src="${p.imagem}" class="product-img-file" alt="${p.nome}">
                     </div>
                     <h3 class="product-name">${p.nome}</h3>
                     <div class="price-tag">R$ ${p.preco.toFixed(2)}</div>
@@ -684,7 +664,7 @@
         function checkoutWhatsApp() {
             if(carrinho.length === 0) return alert("Carrinho vazio!");
             const seuNumeroWhatsApp = "5591984233927"; 
-            let msg = `✨ *Novo Pedido - FTF Store* ✨\n\n`;
+            let msg = `✨ *Novo Pedido - Isah's Store* ✨\n\n`;
             let total = 0;
             carrinho.forEach(item => {
                 msg += `🌸 *${item.qtd}x* ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2)}\n`;
