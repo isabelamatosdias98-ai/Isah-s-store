@@ -19,13 +19,20 @@
             --texto-escuro: #4a3b40;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
         body {
             background: linear-gradient(135deg, #ffe5ec 0%, #ffcad4 50%, #b5e2fa 100%);
             background-size: 400% 400%;
             animation: gradientBg 15s ease infinite;
             color: var(--texto-escuro);
+            overflow-x: hidden;
             min-height: 100vh;
         }
 
@@ -35,59 +42,412 @@
             100% { background-position: 0% 50%; }
         }
 
-        #sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
 
         .petal {
-            position: absolute; background: linear-gradient(to bottom right, #ffb3c6, #ffe5ec);
-            border-radius: 150% 0% 150% 150%/150% 0% 150% 150%; opacity: 0.8; animation: FloatDown linear infinite;
+            position: absolute;
+            background: linear-gradient(to bottom right, #ffb3c6, #ffe5ec);
+            border-radius: 150% 0% 150% 150%/150% 0% 150% 150%;
+            opacity: 0.8;
+            animation: FloatDown linear infinite;
         }
 
         @keyframes FloatDown {
             0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             100% { transform: translateY(100vh) translateX(100px) rotate(720deg); opacity: 0; }
         }
 
-        /* Splash Screen */
         #splash-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffe5ec, #ffcad4);
-            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.6s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe5ec, #ffcad4);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .splash-logo { font-family: 'Fredoka', sans-serif; font-size: 3.5rem; color: white; text-shadow: 3px 3px 0px var(--rosa-escuro); }
+        .splash-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .splash-logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 3px 3px 0px var(--rosa-escuro), 0 0 20px rgba(255,133,161,0.3);
+            margin-bottom: 10px;
+        }
+
+        .hammer-illustration {
+            width: 140px;
+            height: 140px;
+            margin: 25px auto;
+            position: relative;
+            animation: floatHammer 3s ease-in-out infinite;
+        }
+
+        .hammer-head {
+            width: 90px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-medio));
+            border-radius: 15px;
+            border: 4px solid white;
+            box-shadow: 0 8px 0 var(--rosa-escuro), 0 0 15px rgba(244,208,104,0.6);
+            position: absolute;
+            top: 15px;
+            left: 25px;
+        }
+        .hammer-head::after {
+            content: '⭐';
+            position: absolute;
+            top: 10px;
+            left: 28px;
+            font-size: 1.1rem;
+        }
+        .hammer-handle {
+            width: 14px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--dourado), #d4af37);
+            border-radius: 7px;
+            border: 3px solid white;
+            position: absolute;
+            top: 65px;
+            left: 63px;
+        }
+
+        @keyframes floatHammer {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
 
         .btn-enter {
-            margin-top: 30px; padding: 15px 45px; font-size: 1.3rem; font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, var(--dourado), #f39c12); color: white; border: 3px solid white;
-            border-radius: 50px; cursor: pointer; box-shadow: 0 8px 20px rgba(244,208,104,0.4);
+            margin-top: 20px;
+            padding: 15px 45px;
+            font-size: 1.3rem;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--dourado), #f39c12);
+            color: white;
+            border: 3px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(244,208,104,0.4);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        #main-app { display: none; opacity: 0; transition: opacity 0.8s ease; }
+        #main-app {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
 
         .glass-panel {
-            background: var(--branco-vidro); backdrop-filter: blur(12px); border: 2px solid var(--borda-vidro);
-            border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(255, 179, 198, 0.15);
+            background: var(--branco-vidro);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid var(--borda-vidro);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(255, 179, 198, 0.15);
         }
 
-        header { margin: 10px auto; width: 94%; max-width: 1200px; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
-
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
-        
-        .product-card { padding: 20px; text-align: center; }
-
-        /* Nova seção de busca */
-        .search-request-section {
-            max-width: 1200px; margin: 40px auto; width: 94%; padding: 40px; text-align: center;
+        header {
+            position: sticky;
+            top: 10px;
+            margin: 10px auto;
+            width: 94%;
+            max-width: 1200px;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
         }
 
-        .btn-request {
-            display: inline-block; margin-top: 20px; padding: 15px 30px; background: #25d366; color: white;
-            border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.3s;
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: var(--texto-escuro);
+            text-decoration: none;
         }
-        
-        .btn-request:hover { transform: scale(1.05); }
 
-        footer { text-align: center; padding: 30px; background: rgba(255,255,255,0.2); border-top: 2px solid var(--borda-vidro); }
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--texto-escuro);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background: var(--rosa-escuro);
+            color: white;
+            font-size: 0.75rem;
+            padding: 1px 6px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 25px auto;
+            width: 94%;
+            padding: 35px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-text h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.1rem;
+            color: var(--texto-escuro);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            width: 94%;
+        }
+
+        .controls {
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            border: 2px solid var(--borda-vidro);
+            background: rgba(255,255,255,0.7);
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 16px;
+            color: #aaa;
+        }
+
+        .filter-groups {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .select-custom {
+            flex: 1;
+            padding: 12px;
+            border-radius: 50px;
+            border: 2px solid var(--borda-vidro);
+            background: rgba(255,255,255,0.7);
+            outline: none;
+            font-weight: 600;
+            color: var(--texto-escuro);
+            font-size: 0.9rem;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rarity-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .rarity-lendario { background: #e67e22; }
+
+        .product-img-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0 10px 0;
+        }
+
+        .product-img-file {
+            max-width: 130px;
+            max-height: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0px 5px 8px rgba(0,0,0,0.15));
+        }
+
+        .product-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .price-tag {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--rosa-escuro);
+            margin-bottom: 12px;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--rosa-medio), var(--rosa-escuro));
+            color: white;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,133,161,0.25);
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: rgba(255, 245, 247, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 50000;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--rosa-pastel);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-items-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            background: #25d366;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .reviews-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            width: 94%;
+            padding: 30px 20px;
+        }
+
+        .reviews-section h2 {
+            font-family: 'Fredoka', sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .review-card {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            background: rgba(255,255,255,0.2);
+            font-size: 0.85rem;
+            border-top: 2px solid var(--borda-vidro);
+        }
+
+        @media (min-width: 768px) {
+            header { width: 92%; padding: 15px 40px; }
+            .hero { width: 92%; padding: 60px 40px; }
+            .controls { flex-direction: row; }
+            .search-box { flex: 1; }
+            .filter-groups { width: auto; gap: 15px; }
+            .select-custom { min-width: 180px; }
+            .shop-container { width: 92%; }
+            .reviews-section { width: 92%; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .reviews-section h2 { grid-column: 1/-1; }
+        }
     </style>
 </head>
 <body>
@@ -95,64 +455,94 @@
     <div id="sakura-container"></div>
 
     <section id="splash-screen">
-        <div class="splash-content" style="text-align: center;">
+        <div class="splash-content">
             <h1 class="splash-logo">Isah's Store</h1>
-            <p style="font-size: 1.2rem; font-weight: 600;">Marretas Exclusivas do FTF 🌸</p>
+            <p style="font-size: 1.1rem; color: #7d636b; font-weight: 600;">Marretas Exclusivas do FTF 🌸</p>
+            <div class="hammer-illustration">
+                <div class="hammer-head"></div>
+                <div class="hammer-handle"></div>
+            </div>
             <button class="btn-enter" id="btn-entrar-loja">Entrar na Loja ✨</button>
         </div>
     </section>
 
     <div id="main-app">
         <header class="glass-panel">
-            <a href="#" class="logo" style="font-family:'Fredoka'; font-size:1.5rem;">Isah's Store</a>
+            <a href="#" class="logo">
+                <span style="font-family:'Fredoka'; font-weight:700; color: var(--rosa-escuro)">Isah's</span> Store
+            </a>
             <button class="cart-icon-btn" onclick="toggleCart()">
-                <i class="fa-solid fa-basket-shopping"></i> <span id="cart-count">0</span>
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
             </button>
         </header>
 
-        <main class="shop-container" style="max-width: 1200px; margin: 20px auto; width: 94%;">
-            <div class="catalog-grid" id="products-grid"></div>
+        <section class="hero glass-panel">
+            <div class="hero-text">
+                <h1>Seu Inventário Mais Lindo!</h1>
+                <p style="font-size:0.95rem; margin-top:5px; opacity:0.8;">As marretas mais raras e fofas entregues com total segurança via trade no Roblox.</p>
+            </div>
+        </section>
 
-            <!-- NOVA SEÇÃO DE CONTATO -->
-            <section class="search-request-section glass-panel">
-                <h2 style="font-family: 'Fredoka'; color: var(--rosa-escuro);">Não achou a marreta que queria?</h2>
-                <p style="margin: 15px 0;">Mande uma mensagem personalizada agora e verifique a disponibilidade!</p>
-                <a href="https://api.whatsapp.com/send?phone=5591984233927&text=Oi!%20Estou%20no%20site%20da%20Isah's%20Store%20e%20n%C3%A3o%20achei%20a%20marreta%20que%20procuro.%20Voc%C3%AA%20poderia%20verificar%20a%20disponibilidade%20para%20mim?" class="btn-request" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Pedir Marreta via WhatsApp
-                </a>
-            </section>
+        <main class="shop-container">
+            <div class="controls glass-panel">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Procure uma marreta..." oninput="filterProducts()">
+                </div>
+                <div class="filter-groups">
+                    <select id="rarity-filter" class="select-custom" onchange="filterProducts()">
+                        <option value="todos">Raridades</option>
+                        <option value="lendario">Lendário</option>
+                    </select>
+                    <select id="price-order" class="select-custom" onchange="filterProducts()">
+                        <option value="padrao">Ordenar por</option>
+                        <option value="menor">Menor Preço</option>
+                        <option value="maior">Maior Preço</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="catalog-grid" id="products-grid"></div>
         </main>
 
+        <section class="reviews-section glass-panel">
+            <h2><i class="fa-solid fa-heart" style="color: var(--rosa-escuro)"></i> Avaliações dos Clientes</h2>
+            <div class="review-card glass-panel">
+                <div style="color:var(--dourado); margin-bottom:5px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Entrega perfeita! O trade da Lovesick foi super rápido. Virei cliente!"</p>
+                <strong style="font-size:0.8rem; display:block; margin-top:8px;">@NickPlayer_FTF</strong>
+            </div>
+            <div class="review-card glass-panel">
+                <div style="color:var(--dourado); margin-bottom:5px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Amei comprar aqui na Isah's Store, o site é a coisa mais linda e confiável."</p>
+                <strong style="font-size:0.8rem; display:block; margin-top:8px;">@juliah_games</strong>
+            </div>
+        </section>
+
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-basket-shopping"></i> Seu Carrinho</h3>
+                <button onclick="toggleCart()" style="background:none; border:none; font-size:1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list" id="cart-items"></div>
+            <div style="margin-top: auto; padding-top: 15px; border-top: 2px solid var(--rosa-pastel);">
+                <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px;">
+                    <span>Total:</span>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button class="btn-checkout" onclick="checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar Pedido (Pix)
+                </button>
+            </div>
+        </div>
+
         <footer>
-            <p>&copy; 2026 Isah's Store. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Isah's Store. Inspirado no estilo FTF Store.</p>
         </footer>
     </div>
 
     <script>
-        const estoqueMarretas = [
-            { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "Party Balloons.webp" },
-            { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "Lovesick Bow (1).webp" }
-        ];
-
-        document.getElementById('btn-entrar-loja').addEventListener('click', function() {
-            const splash = document.getElementById('splash-screen');
-            const main = document.getElementById('main-app');
-            splash.style.opacity = '0';
-            setTimeout(() => { splash.style.display = 'none'; main.style.display = 'block'; main.style.opacity = '1'; }, 600);
-        });
-
-        function renderProducts(produtos) {
-            const grid = document.getElementById('products-grid');
-            grid.innerHTML = produtos.map(p => `
-                <div class="product-card glass-panel">
-                    <h3 class="product-name">${p.nome}</h3>
-                    <p>R$ ${p.preco.toFixed(2)}</p>
-                    <button class="btn-buy" style="margin-top:10px;">Comprar</button>
-                </div>
-            `).join('');
-        }
-
-        renderProducts(estoqueMarretas);
         const estoqueMarretas = [
             { id: 1, nome: "Party Balloons", raridade: "lendario", preco: 10.00, imagem: "Party Balloons.webp" },
             { id: 2, nome: "Lovesick", raridade: "lendario", preco: 8.00, imagem: "Lovesick Bow (1).webp" },
@@ -162,6 +552,170 @@
             { id: 6, nome: "Spooky", raridade: "lendario", preco: 5.00, imagem: "Spooky Brew (1).webp" },
             { id: 7, nome: "Ice Cream Mix", raridade: "lendario", preco: 4.00, imagem: "Icecream Mix (1).webp" }
         ];
+
+        let carrinho = [];
+
+        document.getElementById('btn-entrar-loja').addEventListener('click', function() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-app');
+            
+            splash.style.opacity = '0';
+            splash.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.style.display = 'block';
+                setTimeout(() => {
+                    main.style.opacity = '1';
+                    renderProducts(estoqueMarretas);
+                }, 50);
+            }, 600);
+        });
+</section><!-- Seção de Contato para Marreta não encontrada -->
+<section class="glass-panel" style="
+    max-width: 1200px; 
+    margin: 40px auto; 
+    width: 94%; 
+    padding: 40px; 
+    text-align: center;
+">
+    
+    <h2 style="
+        font-family: 'Fredoka', sans-serif; 
+        color: var(--rosa-escuro); 
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+    ">
+        Não achou a marreta que queria? 🌸
+    </h2>
+
+    <p style="
+        color: var(--texto-escuro); 
+        margin-bottom: 25px; 
+        font-weight: 500;
+        opacity: 0.9;
+    ">
+        Não se preocupe! Clique abaixo e fale diretamente comigo para ver a disponibilidade.
+    </p>
+    
+    <a href="https://api.whatsapp.com/send?phone=5591984233927&text=Oi!%20Estou%20no%20site%20da%20Isah's%20Store%20e%20n%C3%A3o%20achei%20a%20marreta%20que%20procuro.%20Você%20poderia%20me%20ajudar?" 
+       target="_blank" 
+       style="
+        display: inline-block; 
+        background: #25d366; 
+        color: white; 
+        padding: 15px 30px; 
+        border-radius: 50px; 
+        text-decoration: none; 
+        font-weight: bold; 
+        font-size: 1.1rem; 
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        transition: transform 0.3s ease;
+    ">
+        <i class="fa-brands fa-whatsapp"></i> Falar com Atendente
+    </a>
+</section>
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            if(!container) return;
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 8 + 8 + 'px';
+            petal.style.height = Math.random() * 8 + 8 + 'px';
+            petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+            container.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 5000);
+        }
+        setInterval(createSakura, 400);
+
+        function renderProducts(produtos) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+            produtos.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card glass-panel';
+                card.innerHTML = `
+                    <span class="rarity-tag rarity-${p.raridade}">${p.raridade}</span>
+                    <div class="product-img-container">
+                        <img src="${p.imagem}" class="product-img-file" alt="${p.nome}">
+                    </div>
+                    <h3 class="product-name">${p.nome}</h3>
+                    <div class="price-tag">R$ ${p.preco.toFixed(2)}</div>
+                    <button class="btn-buy" onclick="addToCart(${p.id})">Comprar</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProducts() {
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            const rarityVal = document.getElementById('rarity-filter').value;
+            const orderVal = document.getElementById('price-order').value;
+
+            let filtrados = estoqueMarretas.filter(p => {
+                return p.nome.toLowerCase().includes(searchVal) && (rarityVal === 'todos' || p.raridade === rarityVal);
+            });
+
+            if(orderVal === 'menor') filtrados.sort((a, b) => a.preco - b.preco);
+            if(orderVal === 'maior') filtrados.sort((a, b) => b.preco - a.preco);
+
+            renderProducts(filtrados);
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addToCart(id) {
+            const produto = estoqueMarretas.find(p => p.id === id);
+            const itemNoCarrinho = carrinho.find(item => item.id === id);
+            if (itemNoCarrinho) {
+                itemNoCarrinho.qtd++;
+            } else {
+                carrinho.push({ ...produto, qtd: 1 });
+            }
+            updateCartUI();
+            document.getElementById('cart-sidebar').classList.add('active');
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            let total = 0, totalItens = 0;
+            carrinho.forEach(item => {
+                total += item.preco * item.qtd;
+                totalItens += item.qtd;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div><strong>${item.nome}</strong><div style="font-size:0.8rem; opacity:0.7;">Qtd: ${item.qtd}</div></div>
+                    <div><span style="font-weight:600; margin-right:8px;">R$ ${(item.preco * item.qtd).toFixed(2)}</span>
+                    <button onclick="removeFromCart(${item.id})" style="background:none; border:none; color:#ff85a1;"><i class="fa-solid fa-trash"></i></button></div>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('cart-total').innerText = `R$ ${total.toFixed(2)}`;
+            document.getElementById('cart-count').innerText = totalItens;
+        }
+
+        function removeFromCart(id) {
+            carrinho = carrinho.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if(carrinho.length === 0) return alert("Carrinho vazio!");
+            const seuNumeroWhatsApp = "5591984233927"; 
+            let msg = `✨ *Novo Pedido - Isah's Store* ✨\n\n`;
+            let total = 0;
+            carrinho.forEach(item => {
+                msg += `🌸 *${item.qtd}x* ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2)}\n`;
+                total += item.preco * item.qtd;
+            });
+            msg += `\n💰 *Total:* R$ ${total.toFixed(2)}\n💳 *Pagamento:* Pix\n\nQual seu Nick no Roblox?`;
+            window.open(`https://api.whatsapp.com/send?phone=${seuNumeroWhatsApp}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
     </script>
 </body>
 </html>
